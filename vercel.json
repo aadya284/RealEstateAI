@@ -24,12 +24,5 @@
       "dest": "/",
       "methods": ["GET", "HEAD"]
     }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "backend.config.settings",
-    "DEBUG": "@debug",
-    "SECRET_KEY": "@secret_key",
-    "GEMINI_API_KEY": "@gemini_api_key",
-    "ALLOWED_HOSTS": "@allowed_hosts"
-  }
+  ]
 }
