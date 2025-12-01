@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "backend/manage.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.12"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/config/wsgi.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/",
+      "methods": ["GET", "HEAD"]
+    }
+  ],
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "backend.config.settings",
+    "DEBUG": "@debug",
+    "SECRET_KEY": "@secret_key",
+    "GEMINI_API_KEY": "@gemini_api_key",
+    "ALLOWED_HOSTS": "@allowed_hosts"
+  }
+}

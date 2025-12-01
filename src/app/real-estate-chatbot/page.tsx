@@ -38,6 +38,9 @@ export default function RealEstateChatbot() {
   const [hasUploadedData, setHasUploadedData] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Get backend URL from environment or default to current origin
+  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "";
+
   // Toggle dark mode
   useEffect(() => {
     if (isDarkMode) {
@@ -89,7 +92,7 @@ export default function RealEstateChatbot() {
         uploadFormData.append("session_id", sessionId);
 
         const uploadResponse = await axios.post(
-          "http://localhost:8000/api/data-upload/upload/",
+          "/api/upload",
           uploadFormData,
           {
             headers: {
@@ -108,7 +111,7 @@ export default function RealEstateChatbot() {
       };
 
       const chatResponse = await axios.post(
-        "http://localhost:8000/api/chatbot/chat/",
+        "/api/chatbot",
         chatPayload
       );
 
@@ -152,7 +155,7 @@ export default function RealEstateChatbot() {
 
       const errorBotMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: `Sorry, I encountered an error: ${errorMessage}. Please make sure the backend server is running on http://localhost:8000.`,
+        text: `Sorry, I encountered an error: ${errorMessage}. Please make sure the backend server is running at ${BACKEND_URL}.`,
         isUser: false,
         timestamp: new Date(),
       };
