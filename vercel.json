@@ -1,28 +1,11 @@
 {
   "version": 2,
-  "builds": [
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/next"
-    },
-    {
-      "src": "backend/manage.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.12"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "backend/config/wsgi.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/",
-      "methods": ["GET", "HEAD"]
+      "source": "/api/:path*",
+      "destination": "https://api.example.com/api/:path*"
     }
   ]
 }

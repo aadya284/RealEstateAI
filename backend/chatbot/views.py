@@ -467,7 +467,15 @@ class ChatbotViewSet(viewsets.ViewSet):
             import pandas as pd
             import re
             
-            records = file_data.get('data', [])
+            # Handle both dict and list formats
+            if isinstance(file_data, dict):
+                records = file_data.get('data', [])
+            elif isinstance(file_data, list):
+                records = file_data
+            else:
+                logger.info("Invalid file_data format")
+                return None, None
+            
             if not records:
                 logger.info("No records found in file data")
                 return None, None

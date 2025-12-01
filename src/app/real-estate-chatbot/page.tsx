@@ -39,7 +39,7 @@ export default function RealEstateChatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Get backend URL from environment or default to current origin
-  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "";
+  const BACKEND_URL = "";
 
   // Toggle dark mode
   useEffect(() => {
