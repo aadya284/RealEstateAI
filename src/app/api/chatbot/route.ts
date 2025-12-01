@@ -4,9 +4,8 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   
   try {
-    const backendUrl = process.env.DJANGO_URL || 'http://localhost:8000';
-    
-    const response = await fetch(`${backendUrl}/api/chatbot/chat/`, {
+    // Call backend API routes
+    const response = await fetch('/api/chatbot/chat/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

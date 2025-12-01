@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
-    const backendUrl = process.env.DJANGO_URL || 'http://localhost:8000';
 
-    const response = await fetch(`${backendUrl}/api/data-upload/upload/`, {
+    // Call backend API directly
+    const response = await fetch('/api/data-upload/upload/', {
       method: 'POST',
       body: formData,
     });
