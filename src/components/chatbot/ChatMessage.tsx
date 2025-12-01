@@ -9,6 +9,19 @@ interface ChatMessageProps {
   timestamp: Date;
 }
 
+// Simple markdown to HTML converter for bold, italic, and line breaks
+function parseMarkdown(text: string): React.ReactNode {
+  // Remove markdown bold and italic, keep just the text
+  const cleaned = text
+    .replace(/\*\*(.*?)\*\*/g, '$1')  // Remove ** bold markers
+    .replace(/\*(.*?)\*/g, '$1')      // Remove * italic markers
+    .split('\n')
+    .map((line, idx) => (
+      <div key={idx}>{line}</div>
+    ));
+  return cleaned;
+}
+
 export default function ChatMessage({ message, isUser, timestamp }: ChatMessageProps) {
   return (
     <div className={cn("flex gap-3 group", isUser ? "justify-end" : "justify-start")}>
@@ -25,7 +38,7 @@ export default function ChatMessage({ message, isUser, timestamp }: ChatMessageP
             : "bg-muted/50 text-foreground border border-border/50 hover:bg-muted/70"
         )}
       >
-        <p className="text-[13px] leading-relaxed">{message}</p>
+        <p className="text-[13px] leading-relaxed whitespace-pre-wrap">{parseMarkdown(message)}</p>
         <span className={cn("text-[10px] mt-1.5 block", isUser ? "opacity-70" : "opacity-50")}>
           {timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </span>

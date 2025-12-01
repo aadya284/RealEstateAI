@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    optimizePackageImports: ['next'],
+  },
   turbopack: {
     rules: {
       "*.{jsx,tsx}": {
