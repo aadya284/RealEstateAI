@@ -1,28 +1,4 @@
 {
-  "version": 2,
-  "projects": [
-    {
-      "name": "frontend",
-      "src": ".",
-      "buildCommand": "npm run build",
-      "outputDirectory": ".next"
-    },
-    {
-      "name": "backend",
-      "src": "backend",
-      "buildCommand": "pip install -r requirements.txt",
-      "routes": [
-        {
-          "src": "/api/(.*)",
-          "dest": "/api/$1"
-        }
-      ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://real-estate-ai-backend.vercel.app/api/:path*"
-    }
-  ]
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next"
 }
