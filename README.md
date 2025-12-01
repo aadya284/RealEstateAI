@@ -133,6 +133,8 @@ Frontend will run at:
 
 http://localhost:5173
 
+ACCESS THE DEMO LINK FROM HERE---> https://drive.google.com/file/d/1Niw6iuT0ZN-ZSL_DV8xF9a3lnUSpu-cH/view?usp=sharing
+
 🧪 Example Query
 
 Try typing into the chat:
